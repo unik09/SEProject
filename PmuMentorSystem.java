@@ -33,10 +33,13 @@ public class PmuMentorSystem {
                 System.out.println("Error: Email already exists!");
                 return;
             }
+        }
 
              User newUser = new User(userIdCounter++, name, email, password, role);
         users.add(newUser);
 
         System.out.println("Account created successfully!");
     
+}
+
 }
