@@ -1,13 +1,43 @@
-from flask import Flask, request, jsonify
-app = Flask(_name_)
-# Example users (in-memory database for simplicity)
-users = {"testuser": "password123"}
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.json.get('username')
-    password = request.json.get('password')
-    if users.get(username) == password:
-        return jsonify({"message": "Login successful"}), 200
-    return jsonify({"message": "Invalid credentials"}), 401
-if _name_ == '_main_':
-    app.run(debug=True)
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@SpringBootApplication
+public class LoginApp {
+
+    public static void main(String[] args) {
+        SpringApplication.run(LoginApp.class, args);
+    }
+}
+
+@RestController
+@RequestMapping("/api")
+class LoginController {
+
+    // Example users (in-memory database for simplicity)
+    private final Map<String, String> users = new HashMap<>();
+
+    public LoginController() {
+        users.put("testuser", "password123");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> loginData) {
+        String username = loginData.get("username");
+        String password = loginData.get("password");
+
+        if (users.containsKey(username) && users.get(username).equals(password)) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Login successful");
+            return ResponseEntity.ok(response);
+        }
+
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", "Invalid credentials");
+        return ResponseEntity.status(401).body(errorResponse);
+    }
+}
