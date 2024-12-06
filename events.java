@@ -38,14 +38,5 @@ public class Event {
         System.out.println("Attendees: " + attendees);
     }
 
-    
 
-
-    public static void main(String[] args) {
-        // Create an event
-        Event myEvent = new Event("Java Workshop", "2024-12-10", "Community Center", 50);
-
-        System.out.println("Event Created:");
-        myEvent.displayEventDetails();
-    }
     }
