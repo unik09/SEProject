@@ -8,6 +8,11 @@ public class PmuMentorSystem {
     //Main method
      public static void main(String[] args) {
         createAccount(); // Call the method
+         
+     Event myEvent = new Event("Java Workshop", "2024-12-10", "Community Center", 50);
+
+        System.out.println("Event Created:");
+        myEvent.displayEventDetails();
     }
 
 
